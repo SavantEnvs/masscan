@@ -1,0 +1,8 @@
+project: savantenvs/masscan
+target: ranges
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/ranges/testsuite
+cmds:
+  - cmd: /mayhem/mayhem/out/fuzz_ranges
+    libfuzzer: true

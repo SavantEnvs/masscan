@@ -1,0 +1,10 @@
+project: savantenvs/masscan
+target: config
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/config/testsuite
+cmds:
+  # masscan -c <file> --echo: the config-file reader and the whole option parser (main-conf.c),
+  # then the config printer. File input because option handlers exit() on bad values.
+  - cmd: /mayhem/mayhem/out/masscan --nobacktrace -c @@ --echo
+    timeout: 10

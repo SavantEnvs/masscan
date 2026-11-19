@@ -1,0 +1,10 @@
+project: savantenvs/masscan
+target: nmap_payloads
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/nmap_payloads/testsuite
+cmds:
+  # masscan --nmap-payloads <file>: the nmap-payloads reader (templ-nmap-payloads.c) and payload
+  # table (templ-payloads.c), loaded by masscan_load_database_files() before --echo prints the config.
+  - cmd: /mayhem/mayhem/out/masscan --nobacktrace --nmap-payloads @@ --echo
+    timeout: 10

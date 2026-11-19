@@ -1,0 +1,10 @@
+project: savantenvs/masscan
+target: readscan
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/readscan/testsuite
+cmds:
+  # masscan --readscan: the binary scan-file reader (in-binary.c) feeding the JSON writer. File input
+  # because the reader exit()s on a truncated record.
+  - cmd: /mayhem/mayhem/out/masscan --nobacktrace --readscan @@ -oJ -
+    timeout: 10

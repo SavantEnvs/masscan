@@ -1,0 +1,15 @@
+# nmap-service-probes
+Exclude T:9100-9107
+Probe TCP NULL q||
+totalwaitms 6000
+match ftp m/^220 ([-.\w]+) FTP server/ p/$1 ftpd/
+softmatch ssh m|^SSH-([\d.]+)-| p/SSH $1/
+Probe TCP GetRequest q|GET / HTTP/1.0\r\n\r\n|
+rarity 1
+ports 80,443,8000-8010
+sslports 443
+fallback NULL
+match http m|^HTTP/1\.[01] \d\d\d .*\r\nServer: ([^\r\n]+)|s p/$1/ v/2.0/ i/info/ cpe:/a:apache:http_server/
+Probe UDP DNSStatusRequest q|\0\0\x10\0\0\0\0\0\0\0\0\0|
+ports 53
+match dns m|^\0\0\x90\x04| p/dns/

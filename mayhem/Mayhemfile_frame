@@ -1,0 +1,8 @@
+project: savantenvs/masscan
+target: frame
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/frame/testsuite
+cmds:
+  - cmd: /mayhem/mayhem/out/fuzz_frame
+    libfuzzer: true

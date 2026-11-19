@@ -1,0 +1,8 @@
+project: savantenvs/masscan
+target: banner_smb
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/banner_smb/testsuite
+cmds:
+  - cmd: /mayhem/mayhem/out/fuzz_banner_smb
+    libfuzzer: true
